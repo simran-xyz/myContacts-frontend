@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UserDetailsDialogComponent } from './home-page/user-details-dialog/user-details-dialog.component';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt'; 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,9 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
     
   ],
   providers: [
+    {
+      provide : LocationStrategy, 
+      useClass: HashLocationStrategy},
     {
       provide : HTTP_INTERCEPTORS,
       useClass : Interceptor,
