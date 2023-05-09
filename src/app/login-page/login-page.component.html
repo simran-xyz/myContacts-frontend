@@ -1,0 +1,93 @@
+<div >
+  <div class="row vh-100">
+    <div class="col-sm-6 text-center">
+      <img src="../../assets/logo.png" alt="" style="height:70%; width: 60%;" class="mx-auto center1">
+    </div>
+    <div class="col-sm-6" style="background-color:#F9E9ED;">
+      <div class="container mx-auto my-auto center">
+        <h2 class="text-center">{{isUserRegistered ? "LOGIN" : 'REGISTER'}}</h2> <br>
+        <div class="w-50 h-50 p-4 border mx-auto shadow-lg bg-body rounded card">
+          
+          <!---------------- REGISTER USER FORM -------------------->
+
+          <form *ngIf="!isUserRegistered" [formGroup]="loginUser">
+            <label class="mt-2">User Name</label>
+            <input type="text" class="form-control" formControlName="username"
+                   [ngClass]="{'is-invalid':loginUserControls['username'].touched
+                                && loginUserControls['username'].invalid}">
+            <div class="invalid-feedback">
+              <div *ngIf="loginUserControls['username'].touched 
+                          && loginUserControls['username'].errors?.['required']">Required</div>
+            </div>
+
+            <label class="mt-2">Email</label>
+            <input type="text" class="form-control" formControlName="email"
+                   [ngClass]="{'is-invalid':loginUserControls['email'].touched
+                                && loginUserControls['email'].invalid}">
+            <div class="invalid-feedback">
+              <div *ngIf="loginUserControls['email'].touched">
+                <div *ngIf="loginUserControls['email'].errors?.['required']">Required</div>
+                <div *ngIf="loginUserControls['email'].errors?.['pattern']">Invalid Email</div>
+              </div>
+            </div>
+      
+            <label class="mt-2">Password</label>
+            <input [type]="show ? 'text' : 'password'" class="form-control pass-input" formControlName="password"
+                   [ngClass]="{'is-invalid':loginUserControls['password'].touched
+                                && loginUserControls['password'].invalid}">
+            <mat-icon (click)="password()" class="pass-eye-r">{{show ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <div class="invalid-feedback">
+              <div *ngIf="loginUserControls['password'].touched 
+                          && loginUserControls['password'].errors?.['required']">Required</div>
+            </div>
+
+            <div class="text-center mt-3">
+              <button class="btn btn-primary" 
+                      [disabled]="loginUser.invalid"
+                      (click)="registerUser()">Register</button>
+            </div>
+          </form>
+
+          <!---------------- LOGIN FORM --------------------------->
+
+          <form *ngIf="isUserRegistered" [formGroup]="loginUser">
+      
+            <label class="mt-2">Email</label>
+            <input type="text" class="form-control" formControlName="email" 
+                   [ngClass]="{'is-invalid':loginUserControls['email'].touched
+                                && loginUserControls['email'].invalid}">
+            <div class="invalid-feedback">
+              <div *ngIf="loginUserControls['email'].touched">
+                <div *ngIf="loginUserControls['email'].errors?.['required']">Required</div>
+                <div *ngIf="loginUserControls['email'].errors?.['pattern']">Invalid Email</div>
+              </div>
+            </div>
+
+            <label class="mt-2">Password</label>
+            <input [type]="show ? 'text' : 'password'" class="form-control pass-input" formControlName="password"
+                   [ngClass]="{'is-invalid':loginUserControls['password'].touched
+                                && loginUserControls['password'].invalid}">
+            <mat-icon (click)="password()" class="pass-eye">{{show ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <div class="invalid-feedback">
+              <div *ngIf="loginUserControls['password'].touched 
+                          && loginUserControls['password'].errors?.['required']">Required</div>
+            </div>
+
+            <div class="text-center mt-3">
+              <button class="btn btn-primary" 
+                      [disabled]="loginUser.invalid"
+                      (click)="login()">Login</button>
+            </div>
+          </form>
+        </div>
+        
+        <h4 class="text-center text-muted mt-5">
+           {{isUserRegistered ? 'New User?': 'Already Registered? '}} 
+          <span class="cursor-pointer text-primary" (click)="toggle()">{{isUserRegistered ? 'Register': 'Login'}}</span>
+        </h4>
+    
+        </div>
+    </div>
+  </div>
+</div>
+

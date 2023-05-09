@@ -1,0 +1,53 @@
+<h4 mat-dialog-title class="mat-dialog-heading">
+  {{data.action === 'ADD'? 'ADD': 'UPDATE'}} CONTACT
+  <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right; margin: 5px;">
+    <mat-icon>close</mat-icon>
+  </button>
+</h4>
+
+<div mat-dialog-content>
+  <form [formGroup]="updateContact">
+    <label class="mt-2">Name</label>
+    <input type="text" class="form-control" formControlName="name"
+           [ngClass]="{'is-invalid': updateContact.controls['name'].touched 
+                        && updateContact.controls['name'].invalid}">
+    <div class="invalid-feedback">
+      <div *ngIf="updateContact.controls['name'].touched">
+        <div *ngIf="updateContact.controls['name'].errors?.['required']">Required</div>
+        <div *ngIf="updateContact.controls['name'].errors?.['pattern']">Invalid Name</div>
+      </div>
+    </div>
+
+    <label class="mt-2">Email</label>
+    <input type="text" class="form-control" formControlName="email"
+           [ngClass]="{'is-invalid': updateContact.controls['email'].touched 
+                        && updateContact.controls['email'].invalid}">
+    <div class="invalid-feedback">
+      <div *ngIf="updateContact.controls['email'].touched">
+        <div *ngIf="updateContact.controls['email'].errors?.['required']">Required</div>
+        <div *ngIf="updateContact.controls['email'].errors?.['pattern']">Invalid Email</div>
+      </div>
+    </div>
+
+    <label class="mt-2">Phone No.</label>
+    <input type="text" class="form-control" formControlName="phone"
+           [ngClass]="{'is-invalid': updateContact.controls['phone'].touched 
+                        && updateContact.controls['phone'].invalid}">
+    <div class="invalid-feedback">
+      <div *ngIf="updateContact.controls['phone'].touched">
+        <div *ngIf="updateContact.controls['phone'].errors?.['required']">Required</div>
+        <div *ngIf="updateContact.controls['phone'].errors?.['pattern']">Invalid Number</div>
+      </div>
+    </div>
+
+    <div class="text-center mt-2">
+      <button class="btn btn-outline-primary w-25" 
+              (click)="addContact()"
+              [disabled]="updateContact.invalid">
+        {{data.action === 'ADD'? 'ADD': 'UPDATE'}}
+      </button>
+    </div>
+    
+  </form>
+
+</div>

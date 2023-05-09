@@ -1,0 +1,13 @@
+<h5 mat-dialog-title class="mat-dialog-heading">
+    Profile
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right; margin: 5px;">
+      <mat-icon>close</mat-icon>
+    </button>
+</h5>
+
+<div mat-dialog-content>
+    <div class="row">
+      <div class="col-4">Name</div> <div class="col-1">:</div> <div class="col-7">{{data['username'] | titlecase}}</div>
+      <div class="col-4">Email</div> <div class="col-1">:</div> <div class="col-7">{{data['email']}}</div>
+    </div>
+</div>

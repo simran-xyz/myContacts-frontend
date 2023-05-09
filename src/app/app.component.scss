@@ -1,0 +1,15 @@
+.loader {
+    width: 100%;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 1001;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.spinner{
+    position: absolute;
+    left: 50%;
+    top: 40%;
+}

@@ -1,0 +1,28 @@
+.body{
+  background-image: url('../../assets/back-ground.avif');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.contacts{
+  img{
+    height:100px;
+    width:100px;
+  }
+  margin: 15px;
+}
+.dropdown-menu-right {
+  right: 0 !important;
+  left: auto !important;
+}
+.table-body{
+ 
+  table{
+    thead{
+      background-color: #F9E9ED;
+    
+    }
+  }
+}
+.nav-color{
+  background-color: #F9E9ED;
+}

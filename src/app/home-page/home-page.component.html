@@ -1,0 +1,49 @@
+<div class="vh-100 body">
+  <nav class="navbar navbar-light bg-light mb-2">
+    <div class="container-fluid">
+      <a class="navbar-brand">My Contacts</a>
+      <div class="btn-group dropdown float-end d-inline">
+        <span class="float-end cursor-pointer me-4 dropdown-toggle" 
+              type="button" id="dropdownMenuButton1" 
+              data-bs-toggle="dropdown" aria-expanded="false">
+          Welcome {{userDetails ? (userDetails.username | titlecase) : ''}}
+        </span>
+        <ul class="dropdown-menu-right dropdown-menu me-5" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item cursor-pointer" (click)="getUserDetails()">Your Profile</a></li>
+          <li><a class="dropdown-item cursor-pointer" (click)="signOut()"> Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5 p-2 table-body">
+    <h1 class="text-center"> <u>Contacts List</u> </h1>
+    <h3 *ngIf="!contacts.length" class="text-center text-muted p-3 m-2">No Contact Added!</h3>
+    <table *ngIf="contacts.length" class="table w-75 mx-auto mt-5 shadow-lg bg-body rounded">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email Address</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Edit/ Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts; index as i">
+          <td>{{i+1}}</td>
+          <td>{{contact.name | titlecase}}</td>
+          <td>{{contact.email}}</td>
+          <td>{{contact.phone}}</td>
+          <td>
+            <mat-icon (click)="addContact('EDIT', contact)" class="cursor-pointer text-primary">edit</mat-icon>
+            <mat-icon (click)="removeContact(contact._id)" class="cursor-pointer text-danger">delete</mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center mt-5">
+      <button class="btn btn-primary w-25" (click)="addContact('ADD')">Add Contact</button>
+    </div>
+  </div>
+</div>
